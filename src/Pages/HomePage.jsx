@@ -14,8 +14,8 @@ const Home = () => {
       />
       <div className="relative z-10 text-center text-white">
         {isLoggedIn && (
-          <h1 className="text-9xl font-mono text-yellow-500	 font-bold animate__animated animate__rollIn">
-            {user.name} PhoneBook
+          <h1 className="text-5xl sm:text-7xl md:text-9xl font-mono font-mono text-yellow-500	 font-bold animate__animated animate__rollIn">
+            {user.name}`s PhoneBook
           </h1>
         )}
       </div>

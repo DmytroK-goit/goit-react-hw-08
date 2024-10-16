@@ -18,10 +18,10 @@ const Header = () => {
   console.log("user:", user);
 
   return (
-    <div className={s.wrapper}>
-      <div>Phone Book</div>
+    <div className="flex bg-teal-600 text-white	p-5 justify-between	flex-col	">
+      <div className="text-sm sm:text-sm">Phone Book</div>
       {isLoggedIn && <div>Welcome, {user.name}</div>}
-      <div className={s.wrapperLinks}>
+      <div className="flex justify-between">
         <NavLink className={buildLinkClass} to="/">
           Home
         </NavLink>
@@ -45,7 +45,7 @@ const Header = () => {
         {isLoggedIn && (
           <button
             onClick={() => dispatch(logout())}
-            className="btn btn-secondary"
+            className="btn btn-secondary h-5"
           >
             Exit
           </button>
