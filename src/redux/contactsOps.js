@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import { goitApi } from "./auth/operations";
 
 axios.defaults.baseURL = "https://67063151031fd46a8312553d.mockapi.io/";
 
@@ -8,7 +9,7 @@ export const fetchContacts = createAsyncThunk(
   "fetchAll",
   async (_, thunkApi) => {
     try {
-      const { data } = await axios.get("/contacts");
+      const { data } = await goitApi.get("/contacts");
       if (data) {
         toast.success(`На сервері знайдено ${data.length} контактів`);
       }
@@ -24,7 +25,7 @@ export const deleteContact = createAsyncThunk(
   "deleteContact",
   async (id, thunkApi) => {
     try {
-      const { data } = await axios.delete(`/contacts/${id}`);
+      const { data } = await goitApi.delete(`/contacts/${id}`);
       if (data) {
         toast.success(`Контакт видалено`);
       }
@@ -40,7 +41,7 @@ export const addContact = createAsyncThunk(
   "addContact",
   async (body, thunkApi) => {
     try {
-      const { data } = await axios.post("/contacts", body);
+      const { data } = await goitApi.post("/contacts", body);
       if (data) {
         toast.success(`Успішно додано контакт`);
       }

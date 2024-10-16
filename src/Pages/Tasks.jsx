@@ -1,9 +1,9 @@
-import { TodoList } from '../components/TodoList/TodoList';
+import ContactList from "../components/ContactList/ContactList";
 
 const Tasks = () => {
   return (
     <div>
-      <TodoList />
+      <ContactList />
     </div>
   );
 };

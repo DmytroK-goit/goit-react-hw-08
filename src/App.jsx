@@ -13,102 +13,74 @@ import { LoadingSpinner } from "./components/LoadingSpinner/LoadingSpinner";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { fetchContacts } from "./redux/contactsOps";
+import Layout from "./components/Layout";
+import NotFound from "./Pages/NotFound";
+import Home from "./Pages/HomePage";
+import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
-function MyApp({ mode, setMode }) {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        width: "80px",
-        alignItems: "center",
-        justifyContent: "center",
-        bgcolor: mode === "dark" ? "grey.900" : "grey.100",
-        color: "text.primary",
-        borderRadius: 1,
-        p: 3,
-        height: "36px",
-      }}
-    >
-      <Select value={mode} onChange={(event) => setMode(event.target.value)}>
-        <MenuItem value="light">Light</MenuItem>
-        <MenuItem value="dark">Dark</MenuItem>
-      </Select>
-    </Box>
-  );
-}
+// function MyApp({ mode, setMode }) {
+//   return (
+//     <Box
+//       sx={{
+//         display: "flex",
+//         width: "80px",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         bgcolor: mode === "dark" ? "grey.900" : "grey.100",
+//         color: "text.primary",
+//         borderRadius: 1,
+//         p: 3,
+//         height: "36px",
+//       }}
+//     >
+//       <Select value={mode} onChange={(event) => setMode(event.target.value)}>
+//         <MenuItem value="light">Light</MenuItem>
+//         <MenuItem value="dark">Dark</MenuItem>
+//       </Select>
+//     </Box>
+//   );
+// }
 
 function App() {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
-  const [mode, setMode] = useState("light");
-  const theme = createTheme({
-    palette: {
-      mode: mode,
-      background: {
-        default: mode === "dark" ? "#333" : "#fff",
-      },
-    },
-  });
+  // const dispatch = useDispatch();
+  // const isLoading = useSelector(selectIsLoading);
+  // const isError = useSelector(selectIsError);
+  // const [mode, setMode] = useState("light");
+  // const theme = createTheme({
+  //   palette: {
+  //     mode: mode,
+  //     background: {
+  //       default: mode === "dark" ? "#333" : "#fff",
+  //     },
+  //   },
+  // });
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-  useEffect(() => {
-    if (isError) {
-      toast.error(`Error: ${isError}`);
-    }
-  }, [isError]);
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
+  // useEffect(() => {
+  //   if (isError) {
+  //     toast.error(`Error: ${isError}`);
+  //   }
+  // }, [isError]);
 
-  const getGradient = (mode) => {
-    return mode === "dark"
-      ? `linear-gradient(to bottom, #eed35c, #4f4f4f)`
-      : `linear-gradient(to bottom, rgb(89, 236, 89), rgb(213, 250, 213))`;
-  };
+  // const getGradient = (mode) => {
+  //   return mode === "dark"
+  //     ? `linear-gradient(to bottom, #eed35c, #4f4f4f)`
+  //     : `linear-gradient(to bottom, rgb(89, 236, 89), rgb(213, 250, 213))`;
+  // };
 
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              background: getGradient(mode),
-              minHeight: "100vh",
-              minWidth: "100vh",
-              padding: "20px",
-              textAlign: "center",
-              overflow: "auto",
-            }}
-          >
-            <MyApp mode={mode} setMode={setMode} />
-            <div
-              className="my-20 shadow-1xl font-bold text-black"
-              style={{ boxShadow: "15px 15px 10px rgb(190, 126, 30)" }}
-            >
-              <h1 className="text-2xl md:text-7xl font-bold text-black">
-                Phone book
-              </h1>
-            </div>
-
-            <ContactForm />
-            <SearchBox />
-            <ContactList />
-            {isLoading && <LoadingSpinner />}
-            {isError && (
-              <p className="text-2xl font-bold text-black">{isError}</p>
-            )}
-            <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-            />
-          </Box>
-        </ThemeProvider>
+        <Route index element={<Home />} />
+        <Route path="contactform" element={<ContactForm />} />
+        <Route path="contactlist" element={<ContactList />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

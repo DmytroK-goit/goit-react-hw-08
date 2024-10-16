@@ -3,12 +3,16 @@ import Contact from "../Contact/Contact";
 import "react-toastify/dist/ReactToastify.css";
 import { useSelector } from "react-redux";
 import { selectFilteredContacts } from "../../redux/contactsSlice";
+import ContactForm from "../ContactForm/ContactForm";
+import SearchBox from "../SearchBox/SearchBox";
 
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
 
   return (
     <>
+      <ContactForm />
+      <SearchBox />
       <h2
         className="text-xl my-20 shadow-1xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-black"
         style={{ boxShadow: "15px 15px 10px rgb(190, 126, 30)" }}
