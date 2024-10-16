@@ -24,9 +24,12 @@ const Header = () => {
         <NavLink className={buildLinkClass} to="/">
           Home
         </NavLink>
-        <NavLink className={buildLinkClass} to="/contactlist">
-          Contactlist
-        </NavLink>
+        {isLoggedIn && (
+          <NavLink className={buildLinkClass} to="/contactlist">
+            Contactlist
+          </NavLink>
+        )}
+
         {!isLoggedIn && (
           <>
             <NavLink className={buildLinkClass} to="/login">
