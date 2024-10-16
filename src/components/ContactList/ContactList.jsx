@@ -1,13 +1,19 @@
 import Contact from "../Contact/Contact";
 
 import "react-toastify/dist/ReactToastify.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredContacts } from "../../redux/contactsSlice";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contactsOps";
 
 const ContactList = () => {
+  const dispatch = useDispatch();
   const contacts = useSelector(selectFilteredContacts);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>

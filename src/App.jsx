@@ -75,7 +75,6 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="contactform" element={<ContactForm />} />
         <Route path="contactlist" element={<ContactList />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
