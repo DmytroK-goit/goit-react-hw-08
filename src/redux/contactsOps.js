@@ -43,6 +43,8 @@ export const addContact = createAsyncThunk(
     try {
       const { data } = await goitApi.post("/contacts", body);
       if (data) {
+        const loadingToastId = toast.loading("Saving...");
+        toast.dismiss(loadingToastId);
         toast.success(`Успішно додано контакт`);
       }
       return data;
