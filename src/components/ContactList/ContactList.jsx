@@ -16,7 +16,7 @@ const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div className="p-5">
       <ContactForm />
       <SearchBox />
       <h2
@@ -32,7 +32,7 @@ const ContactList = () => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 export default ContactList;

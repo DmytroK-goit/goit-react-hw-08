@@ -16,8 +16,8 @@ const Home = () => {
       <div className="relative z-10 text-center text-white">
         {isLoggedIn && (
           <div>
-            <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold animate-textColorChange">
-              {user.name}`s PhoneBook
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold animate-textColorChange mb-10">
+              {user.name}`s Phone Book
             </h1>
             <Link
               to="/contactlist"
