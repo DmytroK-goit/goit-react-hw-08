@@ -4,7 +4,7 @@
 html {
   overflow: auto;
   font-family: sans-serif;
-  height: 100vh;
+  max-height: 100vh;
   background-attachment: fixed;
   background-blend-mode: multiply, multiply, normal, normal;
   background-image: linear-gradient(

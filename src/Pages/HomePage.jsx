@@ -9,10 +9,11 @@ const Home = () => {
   return (
     <div className="relative min-h-screen w-full flex justify-center items-center">
       <img
-        src="https://www.searchenginejournal.com/wp-content/uploads/2019/10/25-of-the-best-examples-of-home-pages-5dc504205de2e.png"
+        src="https://www.comreg.ie/media/2019/05/Printed-Directories-Image-1024x683.jpg"
         alt="Home Page Example"
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
+
       <div className="relative z-10 text-center text-white">
         {isLoggedIn && (
           <div>
