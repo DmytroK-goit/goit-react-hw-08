@@ -1,6 +1,7 @@
 import "animate.css";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../redux/auth/selectors";
+import { Link } from "react-router-dom";
 const Home = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -14,9 +15,17 @@ const Home = () => {
       />
       <div className="relative z-10 text-center text-white">
         {isLoggedIn && (
-          <h1 className="text-5xl sm:text-7xl md:text-9xl font-mono font-mono text-yellow-500	 font-bold animate__animated animate__rollIn">
-            {user.name}`s PhoneBook
-          </h1>
+          <div>
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold animate-textColorChange">
+              {user.name}`s PhoneBook
+            </h1>
+            <Link
+              to="/contactlist"
+              className="mt-8 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              Let`s GO
+            </Link>
+          </div>
         )}
       </div>
     </div>

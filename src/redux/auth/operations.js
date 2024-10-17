@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const goitApi = axios.create({
   baseURL: "https://connections-api.goit.global/",
@@ -14,9 +15,11 @@ export const register = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await goitApi.post("users/signup", credentials);
+      toast.success("Success");
       setAuthHeader(data.token);
       return data;
     } catch (error) {
+      toast.error(error.response?.data?.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -27,9 +30,11 @@ export const login = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await goitApi.post("users/login", credentials);
+      toast.success("Success");
       setAuthHeader(data.token);
       return data;
     } catch (error) {
+      toast.error(error.response?.data?.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
