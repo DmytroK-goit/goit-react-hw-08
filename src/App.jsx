@@ -18,67 +18,28 @@ import NotFound from "./Pages/NotFound";
 import Home from "./Pages/HomePage";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-
-// function MyApp({ mode, setMode }) {
-//   return (
-//     <Box
-//       sx={{
-//         display: "flex",
-//         width: "80px",
-//         alignItems: "center",
-//         justifyContent: "center",
-//         bgcolor: mode === "dark" ? "grey.900" : "grey.100",
-//         color: "text.primary",
-//         borderRadius: 1,
-//         p: 3,
-//         height: "36px",
-//       }}
-//     >
-//       <Select value={mode} onChange={(event) => setMode(event.target.value)}>
-//         <MenuItem value="light">Light</MenuItem>
-//         <MenuItem value="dark">Dark</MenuItem>
-//       </Select>
-//     </Box>
-//   );
-// }
+import { PrivateRoute } from "./components/PrivateRoute";
+import { RestrictedRoute } from "./components/RestrictedRoute";
 
 function App() {
-  // const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
-  // const isError = useSelector(selectIsError);
-  // const [mode, setMode] = useState("light");
-  // const theme = createTheme({
-  //   palette: {
-  //     mode: mode,
-  //     background: {
-  //       default: mode === "dark" ? "#333" : "#fff",
-  //     },
-  //   },
-  // });
-
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
-  // useEffect(() => {
-  //   if (isError) {
-  //     toast.error(`Error: ${isError}`);
-  //   }
-  // }, [isError]);
-
-  // const getGradient = (mode) => {
-  //   return mode === "dark"
-  //     ? `linear-gradient(to bottom, #eed35c, #4f4f4f)`
-  //     : `linear-gradient(to bottom, rgb(89, 236, 89), rgb(213, 250, 213))`;
-  // };
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="contactlist" element={<ContactList />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+        <Route
+          path="contactlist"
+          element={
+            <PrivateRoute component={<ContactList />} redirectTo="/login" />
+          }
+        />
       </Route>
+      <Route path="login" element={<Login />} />
+      <Route
+        path="register"
+        element={
+          <RestrictedRoute component={<Register />} redirectTo="/contacts" />
+        }
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
