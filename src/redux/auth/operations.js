@@ -52,6 +52,7 @@ export const refresh = createAsyncThunk("refresh", async (_, thunkApi) => {
   try {
     // Отримуємо збережений токен з локал стореджа
     const savedToken = thunkApi.getState().auth.token;
+    console.log(savedToken);
 
     // якщо там нічого нема, не виконуємо запит
     if (!savedToken) {
