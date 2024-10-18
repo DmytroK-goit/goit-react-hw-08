@@ -1,7 +1,5 @@
-import { Outlet, Link } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { useState } from "react";
+import { Outlet } from "react-router-dom";
+
 import Header from "./Header/Header";
 
 const Layout = () => {

@@ -1,18 +1,5 @@
-import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import ContactForm from "./components/ContactForm/ContactForm";
-import SearchBox from "./components/SearchBox/SearchBox";
 import ContactList from "./components/ContactList/ContactList";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import { selectIsError, selectIsLoading } from "./redux/contactsSlice";
-import { LoadingSpinner } from "./components/LoadingSpinner/LoadingSpinner";
-import { useDispatch, useSelector } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
-import { fetchContacts } from "./redux/contactsOps";
 import Layout from "./components/Layout";
 import NotFound from "./Pages/NotFound";
 import Home from "./Pages/HomePage";
@@ -20,28 +7,47 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { RestrictedRoute } from "./components/RestrictedRoute";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { refresh } from "./redux/auth/operations";
+import { AnimatePresence } from "framer-motion";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+    <AnimatePresence>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="contactlist"
+            element={
+              <PrivateRoute component={<ContactList />} redirectTo="/login" />
+            }
+          />
+        </Route>
         <Route
-          path="contactlist"
+          path="login"
           element={
-            <PrivateRoute component={<ContactList />} redirectTo="/login" />
+            <RestrictedRoute component={<Login />} redirectTo="/contactlist" />
           }
         />
-      </Route>
-      <Route path="login" element={<Login />} />
-      <Route
-        path="register"
-        element={
-          <RestrictedRoute component={<Register />} redirectTo="/contacts" />
-        }
-      />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute
+              component={<Register />}
+              redirectTo="/contactlist"
+            />
+          }
+        />
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
   );
 }
 

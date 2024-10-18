@@ -1,9 +1,15 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/auth/operations";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../redux/auth/selectors";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import {
+  slideInFromBot,
+  slideInFromLeft,
+  slideInFromRight,
+} from "../components/motion/motion";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -31,10 +37,21 @@ const Login = () => {
     <div className="hero min-h-screen bg-inherit">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold">Login now!</h1>
-          {/* <p className="py-6">Provident</p> */}
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            variants={slideInFromRight()}
+            className="text-5xl font-bold"
+          >
+            Login now!
+          </motion.h1>
         </div>
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={slideInFromLeft()}
+          className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+        >
           <Formik onSubmit={handleSubmit} initialValues={initialValues}>
             <Form className="card-body">
               <div className="form-control">
@@ -73,7 +90,7 @@ const Login = () => {
               </div>
             </Form>
           </Formik>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
