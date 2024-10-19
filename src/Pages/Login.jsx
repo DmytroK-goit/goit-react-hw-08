@@ -5,11 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../redux/auth/selectors";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
-import {
-  slideInFromBot,
-  slideInFromLeft,
-  slideInFromRight,
-} from "../components/motion/motion";
+import { slideInFromLeft, slideInFromRight } from "../components/motion/motion";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -77,11 +73,6 @@ const Login = () => {
                   className="input input-bordered"
                   required
                 />
-                {/* <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label> */}
               </div>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
