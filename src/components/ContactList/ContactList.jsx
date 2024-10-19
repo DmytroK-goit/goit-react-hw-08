@@ -1,14 +1,13 @@
 import Contact from "../Contact/Contact";
-
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredContacts } from "../../redux/contactsSlice";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
 import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contactsOps";
+import { fetchContacts } from "../../redux/contacts/contactsOps";
 import { motion } from "framer-motion";
-import { slideInFromRight } from "../motion/motion";
+import { itemVariants, slideInFromRight } from "../motion/motion";
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -33,10 +32,17 @@ const ContactList = () => {
       </motion.h2>
 
       <ul className="grid gap-4 grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-        {contacts.map((contact) => (
-          <li className="w-full" key={contact.id}>
+        {contacts.map((contact, index) => (
+          <motion.li
+            custom={index}
+            initial="hidden"
+            animate="visible"
+            variants={itemVariants()}
+            className="w-full"
+            key={contact.id}
+          >
             <Contact contact={contact} />
-          </li>
+          </motion.li>
         ))}
       </ul>
     </div>

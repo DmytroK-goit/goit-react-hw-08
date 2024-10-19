@@ -1,8 +1,7 @@
 import { Field, Form, Formik } from "formik";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../redux/auth/operations";
 import { useNavigate } from "react-router-dom";
-import { selectIsLoggedIn } from "../redux/auth/selectors";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { slideInFromLeft, slideInFromRight } from "../components/motion/motion";
@@ -10,7 +9,6 @@ import { slideInFromLeft, slideInFromRight } from "../components/motion/motion";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const initialValues = {
     email: "",
     password: "",
