@@ -4,17 +4,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilteredContacts } from "../../redux/contactsSlice";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
-import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contacts/contactsOps";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { itemVariants, slideInFromRight } from "../motion/motion";
+import { slideInFromRight } from "../motion/motion";
+import { fetchContacts } from "../../redux/contacts/contactsOps";
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: (index) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: index * 0.1,
+      duration: 0.5,
+    },
+  }),
+};
 
 const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectFilteredContacts);
+  const [isFirstRender, setIsFirstRender] = useState(true);
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (contacts.length > 0) {
+      setIsFirstRender(false);
+    }
+  }, [contacts]);
 
   return (
     <div className="p-5">
@@ -35,9 +55,10 @@ const ContactList = () => {
         {contacts.map((contact, index) => (
           <motion.li
             custom={index}
-            initial="hidden"
+            initial={isFirstRender ? "hidden" : false}
             animate="visible"
-            variants={itemVariants()}
+            variants={itemVariants}
+            layout
             className="w-full"
             key={contact.id}
           >
@@ -48,4 +69,5 @@ const ContactList = () => {
     </div>
   );
 };
+
 export default ContactList;
