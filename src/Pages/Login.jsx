@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../redux/auth/operations";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import { slideInFromLeft, slideInFromRight } from "../components/motion/motion";
@@ -72,6 +72,17 @@ const Login = () => {
                   required
                 />
               </div>
+              <label className="label">
+                <span className="label-text mt-2">
+                  If you don't have an account, click Sign up
+                </span>
+              </label>
+              <Link
+                to="/register"
+                className="mt-2 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                Sign up
+              </Link>
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
                   Login
