@@ -2,8 +2,9 @@ import s from "./Contact.module.css";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contacts/contactsOps";
+
 import PropTypes from "prop-types";
+import { deleteContact } from "../../redux/contacts/operations";
 
 const Contact = ({ contact }) => {
   const { id, name, number } = contact;

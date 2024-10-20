@@ -1,8 +1,9 @@
 import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter, selectNameFilter } from "../../redux/filtersSlice";
-import { slideInFromRight, slideRightSearchForm } from "../motion/motion";
+import { changeFilter } from "../../redux/filters/slice";
+import { slideInFromRight } from "../motion/motion";
 import { motion } from "framer-motion";
+import { selectNameFilter } from "../../redux/filters/selectors";
 
 const SearchBox = () => {
   const searchId = useId();

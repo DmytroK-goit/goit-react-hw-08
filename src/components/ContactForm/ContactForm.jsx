@@ -2,15 +2,10 @@ import { useId } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-
 import { nanoid } from "nanoid";
-import { addContact } from "../../redux/contacts/contactsOps";
 import { motion } from "framer-motion";
-import {
-  slideInFromLeft,
-  slideInFromRight,
-  slideLeftContactForm,
-} from "../motion/motion";
+import { slideInFromRight } from "../motion/motion";
+import { addContact } from "../../redux/contacts/operations";
 
 const ContactForm = () => {
   const dispatch = useDispatch();

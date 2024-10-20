@@ -1,4 +1,3 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { goitApi } from "../auth/operations";
 import toast from "react-hot-toast";

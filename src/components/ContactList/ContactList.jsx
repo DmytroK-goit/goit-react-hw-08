@@ -1,13 +1,13 @@
 import Contact from "../Contact/Contact";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
-import { selectFilteredContacts } from "../../redux/contactsSlice";
+import { selectFilteredContacts } from "../../redux/contacts/slice";
 import ContactForm from "../ContactForm/ContactForm";
 import SearchBox from "../SearchBox/SearchBox";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { slideInFromRight } from "../motion/motion";
-import { fetchContacts } from "../../redux/contacts/contactsOps";
+import { fetchContacts } from "../../redux/contacts/operations";
 
 const itemVariants = {
   hidden: { opacity: 0, scale: 0.8 },
