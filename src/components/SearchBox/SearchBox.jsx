@@ -1,14 +1,20 @@
 import { useId } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeFilter } from "../../redux/filters/slice";
+
 import { slideInFromRight } from "../motion/motion";
 import { motion } from "framer-motion";
-import { selectNameFilter } from "../../redux/filters/selectors";
+import {
+  selectNameFilter,
+  selectNumberFilter,
+} from "../../redux/filters/selectors";
+import { changeFilter, changeFilterNumber } from "../../redux/filters/slice";
 
 const SearchBox = () => {
-  const searchId = useId();
+  const searchIdName = useId();
+  const searchIdNumber = useId();
   const dispatch = useDispatch();
   const name = useSelector(selectNameFilter);
+  const number = useSelector(selectNumberFilter);
 
   return (
     <motion.div
@@ -23,14 +29,25 @@ const SearchBox = () => {
           backgroundColor: " burlywood",
         }}
       >
-        <label className="w-3/4 flex flex-col " htmlFor={searchId}>
+        <label className="w-3/4 flex flex-col " htmlFor={searchIdName}>
           Find contacts by name
           <input
             className="border-solid border-2 border-black"
             type="text"
-            id={searchId}
+            id={searchIdName}
             value={name}
             onChange={(e) => dispatch(changeFilter(e.target.value))}
+            placeholder="Enter search name"
+          />
+        </label>
+        <label className="w-3/4 flex flex-col " htmlFor={searchIdNumber}>
+          Find contacts by number
+          <input
+            className="border-solid border-2 border-black"
+            type="text"
+            id={searchIdNumber}
+            value={number}
+            onChange={(e) => dispatch(changeFilterNumber(e.target.value))}
             placeholder="Enter search name"
           />
         </label>
