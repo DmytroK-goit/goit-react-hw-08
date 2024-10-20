@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import ContactList from "./components/ContactList/ContactList";
 import Layout from "./components/Layout";
-import NotFound from "./Pages/NotFound";
-import Home from "./Pages/HomePage";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
+import NotFound from "./pages/NotFound";
+import Home from "./pages/HomePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { RestrictedRoute } from "./components/RestrictedRoute";
 import { useDispatch } from "react-redux";
@@ -44,7 +44,6 @@ function App() {
             />
           }
         />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
