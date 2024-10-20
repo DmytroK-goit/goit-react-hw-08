@@ -74,7 +74,7 @@ const Login = () => {
               </div>
               <label className="label">
                 <span className="label-text mt-3">
-                  If you don't have an account, click Sign up
+                  If you don`t have an account, click Sign up
                 </span>
               </label>
               <Link
