@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, logout, refresh, register } from "./operations";
+import { contactsReducer } from "../contacts/slice";
 
 const initialState = {
   user: {
@@ -26,7 +27,10 @@ const slice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logout.fulfilled, () => initialState)
+
+      .addCase(logout.fulfilled, (state) => {
+        return initialState;
+      })
       .addCase(refresh.fulfilled, (state, action) => {
         state.user.email = action.payload.email;
         state.user.name = action.payload.name;

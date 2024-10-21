@@ -14,9 +14,6 @@ const Header = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log("isLoggedIn:", isLoggedIn);
-  console.log("user:", user);
-
   return (
     <div className="flex bg-teal-600 text-white	p-5 justify-between items-center flex-col	sm:flex-row ">
       <div className="text-lime-300	decoration-slate-300	underline text-sm sm:text-base items-center lg:text-4xl animate__animated animate__flip">

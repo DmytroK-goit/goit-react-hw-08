@@ -14,7 +14,6 @@ const Login = () => {
     password: "",
   };
   const handleSubmit = (values, options) => {
-    console.log(values);
     dispatch(login(values))
       .unwrap()
       .then((res) => {
