@@ -7,16 +7,24 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { RestrictedRoute } from "./components/RestrictedRoute";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { refresh } from "./redux/auth/operations";
 import { AnimatePresence } from "framer-motion";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import { LoadingSpinner } from "./components/loader/loader";
 
 function App() {
+  const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refresh());
   }, [dispatch]);
+
+  if (isRefreshing) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <AnimatePresence>
       <Routes>
