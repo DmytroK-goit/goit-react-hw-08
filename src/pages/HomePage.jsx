@@ -20,10 +20,10 @@ const Home = () => {
         animate={{
           x: 0,
           scale: 1,
-          filter: "blur(0px) brightness(0.8)",
+          filter: "blur(0px) brightness(0.4)",
         }}
         transition={{
-          duration: 2,
+          duration: 1,
         }}
         src="https://www.comreg.ie/media/2019/05/Printed-Directories-Image-1024x683.jpg"
         alt="Home Page Example"
