@@ -2,7 +2,7 @@ import "animate.css";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../redux/auth/selectors";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import { slideInFromBot, slideInFromRight } from "../components/motion/motion";
 const Home = () => {
   const user = useSelector(selectUser);
@@ -24,9 +24,13 @@ const Home = () => {
       >
         {isLoggedIn && (
           <div>
-            <h1 className="text-5xl sm:text-7xl md:text-9xl font-bold animate-textColorChange mb-10">
+            <motion.h1
+              animate={{ rotate: 360 }}
+              transition={{ delay: 3, duration: 2 }}
+              className="text-5xl sm:text-7xl md:text-9xl font-bold animate-textColorChange mb-10"
+            >
               {user.name}`s Phone Book
-            </h1>
+            </motion.h1>
             <motion.div
               initial="hidden"
               animate="visible"
