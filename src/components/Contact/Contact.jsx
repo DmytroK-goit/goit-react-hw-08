@@ -2,6 +2,7 @@ import s from "./Contact.module.css";
 import { IoPeopleSharp } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 
 import PropTypes from "prop-types";
 import { deleteContact } from "../../redux/contacts/operations";
@@ -12,7 +13,12 @@ const Contact = ({ contact }) => {
   const handleDelete = () => dispatch(deleteContact(id));
 
   return (
-    <div className={s.contact} key={id}>
+    <motion.div
+      whileHover={{ scale: 1.01, y: -20 }}
+      transition={{ duration: 0.2 }}
+      className={s.contact}
+      key={id}
+    >
       <div>
         <p>
           <IoPeopleSharp /> {name}
@@ -28,7 +34,7 @@ const Contact = ({ contact }) => {
       >
         Delete
       </button>
-    </div>
+    </motion.div>
   );
 };
 
