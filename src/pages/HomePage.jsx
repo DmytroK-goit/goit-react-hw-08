@@ -4,6 +4,7 @@ import { selectIsLoggedIn, selectUser } from "../redux/auth/selectors";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { slideInFromBot, slideInFromRight } from "../components/motion/motion";
+
 const Home = () => {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -58,17 +59,23 @@ const Home = () => {
             </motion.div>
           </div>
         ) : (
-          <p className="text-xl font-bold text-blue-900 lg:text-5xl mb-4 text-center font-light">
+          <h2 className="text-xl font-bold text-yellow-400 lg:text-5xl mb-4 text-center font-light">
             This is your phone book made for you. Enter your{" "}
-            <Link to="/login" className=" underline underline-offset-auto">
+            <Link
+              to="/login"
+              className="text-blue-500 hover:text-blue-600 underline underline-offset-2"
+            >
               login and password{" "}
             </Link>
             or{" "}
-            <Link to="/register" className="underline  underline-offset-auto">
+            <Link
+              to="/register"
+              className="text-blue-500 hover:text-blue-600 underline underline-offset-2"
+            >
               register
             </Link>{" "}
-            and used.
-          </p>
+            and use it.
+          </h2>
         )}
       </motion.div>
     </div>
