@@ -35,7 +35,7 @@ const Home = () => {
         variants={slideInFromRight()}
         className="relative z-10 text-center text-white"
       >
-        {isLoggedIn && (
+        {isLoggedIn ? (
           <div>
             <motion.h1
               animate={{ rotate: 360 }}
@@ -57,6 +57,18 @@ const Home = () => {
               </Link>
             </motion.div>
           </div>
+        ) : (
+          <p className="text-xl font-bold text-blue-900 lg:text-5xl mb-4 text-center font-light">
+            This is your phone book made for you. Enter your{" "}
+            <Link to="/login" className=" underline underline-offset-auto">
+              login and password{" "}
+            </Link>
+            or{" "}
+            <Link to="/register" className="underline  underline-offset-auto">
+              register
+            </Link>{" "}
+            and used.
+          </p>
         )}
       </motion.div>
     </div>

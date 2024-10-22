@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import s from "./Header.module.css";
 import clsx from "clsx";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 import { selectIsLoggedIn, selectUser } from "../../redux/auth/selectors";
 import { logout } from "../../redux/auth/operations";
@@ -16,13 +17,21 @@ const Header = () => {
 
   return (
     <div className="flex bg-teal-600 text-white	p-5 justify-between items-center flex-col	sm:flex-row ">
-      <div className="text-lime-300	decoration-slate-300	underline text-sm sm:text-base items-center lg:text-4xl animate__animated animate__flip">
-        Phone Book
-      </div>
+      <motion.div
+        whileHover={{ scale: 1.2 }}
+        transition={{ duration: 0.2 }}
+        className="text-lime-300	decoration-slate-300	underline text-sm sm:text-base items-center lg:text-4xl animate__animated animate__flip"
+      >
+        <Link to="/"> Phone Book</Link>
+      </motion.div>
       {isLoggedIn && (
-        <div className="text-sm sm:text-base items-center lg:text-4xl">
+        <motion.div
+          whileHover={{ scale: 1.4, textDecoration: "underline" }}
+          transition={{ duration: 0.4 }}
+          className="text-sm sm:text-base items-center lg:text-4xl"
+        >
           Welcome, {user.name}
-        </div>
+        </motion.div>
       )}
       <div className="flex justify-between items-center gap-5">
         <NavLink className={buildLinkClass} to="/">
