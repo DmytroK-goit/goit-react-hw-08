@@ -23,7 +23,7 @@ export const register = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }
@@ -38,7 +38,7 @@ export const login = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.message);
       return thunkApi.rejectWithValue(error.message);
     }
   }

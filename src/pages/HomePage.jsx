@@ -2,7 +2,7 @@ import "animate.css";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "../redux/auth/selectors";
 import { Link } from "react-router-dom";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { slideInFromBot, slideInFromRight } from "../components/motion/motion";
 const Home = () => {
   const user = useSelector(selectUser);
@@ -10,7 +10,20 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen w-full flex justify-center items-center">
-      <img
+      <motion.img
+        initial={{
+          x: "-100vw",
+          scale: 1,
+          filter: "blur(20px) brightness(0.3)",
+        }}
+        animate={{
+          x: 0,
+          scale: 1,
+          filter: "blur(0px) brightness(0.8)",
+        }}
+        transition={{
+          duration: 2,
+        }}
         src="https://www.comreg.ie/media/2019/05/Printed-Directories-Image-1024x683.jpg"
         alt="Home Page Example"
         className="absolute inset-0 w-full h-full object-cover z-0"
@@ -38,7 +51,7 @@ const Home = () => {
             >
               <Link
                 to="/contactlist"
-                className="mt-8 px-6 py-3 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
+                className="mt-8 px-20 py-3 w-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
               >
                 Let`s GO
               </Link>
